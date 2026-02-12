@@ -59,7 +59,7 @@ curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API
 -d '{"request":"create_thing",
  "params":{
    "description":"Thing description", 
-   "start_time": Thing starttime in epoch,
+   "start_time": Thing starttime in epoch in miliseconds,
    "alarms":[
      {
         "type": "minutes / hours / days / weeks / months",
@@ -82,13 +82,55 @@ curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API
 ## Examples
 
 ```bash
-#Get the group id by group name
+#Get the group id by group name. Now i'm looking for the group_id of the group that has "friends" in his name.
 curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API_KEY" -H "Content-Type: application/json" -d '
 {
  "request":"get_groups",
  "params":{
    "starting_from": 1739383324000
    }
-}'| jq '.groups[] | select(.group|contains ("group name"))'
-#
+}'| jq '.groups[] | select(.group|contains ("friends"))'
+# Add a thing and invite a group. When you invite a group, you can't invite other people. You are adding 2 reminders before the thing time in this invite: one with 10 minutes ahead and one with 4 hours. You are adding the thing for the group with the group_id 564564646. The thing time is 1770935248000.
+curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API_KEY" -H "Content-Type: application/json" 
+-d '{"request":"create_thing",
+ "params":{
+   "description":"Thing description", 
+   "start_time": 1770935248000,
+   "alarms":[
+     {
+        "type": "minutes",
+        "value": 10
+     },
+     {
+        "type": "hours",
+        "value": 4
+     }
+    ],
+   "invites": [
+      {"group_id":564564646 }
+    ]
+   
+ }
+}'
+#Invites friends to a thing. Add them reminders. Add the phone number of the friend in invitation. The format is country prefix + phone number like in the example.  You are adding 2 reminders before the thing time in this invite: one with 10 minutes ahead and one with 4 hours
+curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $MyFeedApiKey" -H "Content-Type: application/json" 
+-d '{"request":"create_thing",
+ "params":{
+   "description":"Thing description", 
+   "start_time": Thing starttime in epoch,
+   "alarms":[
+     {
+        "type": "minutes",
+        "value": 10
+     },
+     {
+        "type": "hours",
+        "value": 4
+     }
+    ],
+   "invites": [
+      {"phone_number":"19255264501"}
+    ]
+ }
+}'
 ```
