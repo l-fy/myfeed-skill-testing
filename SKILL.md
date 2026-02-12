@@ -82,12 +82,13 @@ curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API
 ## Examples
 
 ```bash
-#Get the group id by name
+#Get the group id by group name
 curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API_KEY" -H "Content-Type: application/json" -d '
 {
  "request":"get_groups",
  "params":{
    "starting_from": 1739383324000
    }
-}'| jq '.groups[] | {group_id,url_group,is_admin}'
+}'| jq '.groups[] | select(.group|contains ("group name"))'
+#
 ```
