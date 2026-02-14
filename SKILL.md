@@ -112,7 +112,7 @@ curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $Myfeed_API
    
  }
 }'
-#Invites friends to a thing. Add them reminders. Add the phone number of the friend in invitation. The format is country prefix + phone number like in the example.  You are adding 2 reminders before the thing time in this invite: one with 10 minutes ahead and one with 4 hours. Start time needs to be in the future.
+#Invites friends to a thing. Add them reminders. Add the phone number of the friend in invitation. The format is country prefix + phone number like in the example. Make sure there is no + within phone number.  You are adding 2 reminders before the thing time in this invite: one with 10 minutes ahead and one with 4 hours. Start time needs to be in the future.
 curl -X POST https://skill.myfeed.life/api -H "Authorization: ApiKey $MyFeedApiKey" -H "Content-Type: application/json" 
 -d '{"request":"create_thing",
  "params":{
