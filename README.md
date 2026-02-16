@@ -1,9 +1,8 @@
 
 My Life Feed is a social productivity and scheduling app. It is designed to help friends and family coordinate plans, track goals, and send reminders in a more casual, engaging way than traditional calendar apps.
 
-The OpenClaw skill can add things catched from Whatsapp and send them to the whatsapp friends.
-So that your friends also have their own reminders even if they don't have OpenClaw.
-
+The OpenClaw skill can add things into My Life Feed app.
+Your friends also receive reminders from their My Life Feed things.
 
 The app's main goal is to replace the "chaos" of group chats with a streamlined way to propose plans and track who is doing what. 
 Instead of burying plans in a text thread, you "send a thing" (an invitation or task) to specific friends or groups.
